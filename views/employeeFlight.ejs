@@ -4,15 +4,19 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="css/mycss.css">
+    <link rel="stylesheet" href="/css/mycss.css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="cdn/bootstrap.min.css">
-    <script src="cdn/jquery-3.2.1.slim.min.js"></script>
+    <link rel="stylesheet" href="/cdn/bootstrap.min.css">
+    <script src="/cdn/jquery-3.2.1.slim.min.js"></script>
     <script>
       $(()=>{
         let date= new Date();
         let dateVal= date.getFullYear()+"-"+(date.getMonth()+1>9?"":"0")+(date.getMonth()+1)+"-"+(date.getDay()>9?"":"0")+date.getDay();
         $('#filterTime').val(dateVal);
+
+        $("#addFlight").click(()=>{
+          window.location.href = "/employee/flight/add";
+        })
       })
     </script>
 
@@ -27,7 +31,7 @@
     <div class="container-fluid">
       <div class="row">
         <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
-          <img src="./AirPort.png" alt="" style="width: 100%;">
+          <img src="/AirPort.png" alt="" style="width: 100%;">
           <div class="container">
             <h3 class="display-5 daNangAirportGuide">
               Da Nang Airport Guide
@@ -72,6 +76,7 @@
 
             <div class="col-sm-4 col-md-4">
               <button type="button" class="btn btn-success">Tìm</button>
+              <button type="button" class="btn btn-success" id="addFlight">Thêm chuyến bay</button>
             </div>
           </div>
 
@@ -131,7 +136,7 @@
         </div>
     </footer>
 
-    <script src="cdn/popper.min.js"></script>
-    <script src="cdn/bootstrap.min.js"></script>
+    <script src="/cdn/popper.min.js"></script>
+    <script src="/cdn/bootstrap.min.js"></script>
   </body>
 </html>

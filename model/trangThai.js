@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var newsSchema = new Schema({
-  MaTT  : Schema.Types.ObjectId,
+  // _id
   TenTT : String
 });
 
