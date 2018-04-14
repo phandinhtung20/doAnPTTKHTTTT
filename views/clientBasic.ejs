@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/mycss.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="cdn/bootstrap.min.css">
+    <script src="cdn/jquery-3.2.1.slim.min.js"></script>
+    <script>
+      $(()=>{
+        let date= new Date();
+        let dateVal= date.getFullYear()+"-"+(date.getMonth()+1>9?"":"0")+(date.getMonth()+1)+"-"+(date.getDay()>9?"":"0")+date.getDay();
+        $('#filterTime').val(dateVal);
+      })
+    </script>
+
+  </head>
+  <body>
+    <div id="header">
+      <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top" role="navigation">
+          <a href="#" class="navbar-brand">Hệ thống quản lý cập nhật tình hình các chuyến bay đến và đi cho sân bay quốc tế Đà Nẵng</a>
+      </nav>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+          <img src="./AirPort.png" alt="" style="width: 100%;">
+          <div class="container">
+            <h3 class="display-5 daNangAirportGuide">
+              Da Nang Airport Guide
+            </h3>
+          </div>
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Quản lý chuyến bay</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Tình hình chuyến bay<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Đăng nhập</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+          <h1 class="text-center">DANH SÁCH CHUYẾN BAY</h1>
+          <hr>
+          <div class="row">
+            <div class="col-sm-2 col-md-2">
+              <form>
+                <input type="radio" name="gender" value="out" checked>Bay đi<br>
+                <input type="radio" name="gender" value="in">Bay đến<br>
+              </form>
+            </div>
+
+            <div class="col-sm-2 col-md-2">
+              <label>Nơi đi/đến: </label> <br>
+              <label>Thời gian: </label>
+            </div>
+
+            <div class="col-sm-4 col-md-4">
+              <select class="">
+                <option disabled>Nơi đến</option>
+              </select> <br>
+
+              <input type="date" name="thoiGian" id="filterTime"/>
+            </div>
+
+            <div class="col-sm-4 col-md-4">
+              <button type="button" class="btn btn-success">Tìm</button>
+            </div>
+          </div>
+
+
+          <hr>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Header</th>
+                  <th>Header</th>
+                  <th>Header</th>
+                  <th>Header</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1,001</td>
+                  <td>Lorem</td>
+                  <td>ipsum</td>
+                  <td>dolor</td>
+                  <td>sit</td>
+                </tr>
+                <tr>
+                  <td>1,002</td>
+                  <td>amet</td>
+                  <td>consectetur</td>
+                  <td>adipiscing</td>
+                  <td>elit</td>
+                </tr>
+                <tr>
+                  <td>1,003</td>
+                  <td>Integer</td>
+                  <td>nec</td>
+                  <td>odio</td>
+                  <td>Praesent</td>
+                </tr>
+                <tr>
+                  <td>1,003</td>
+                  <td>libero</td>
+                  <td>Sed</td>
+                  <td>cursus</td>
+                  <td>ante</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer fixed-bottom">
+        <div class="container-fluid">
+            <span class="text-muted">Nhóm AD23 - PTTKHTTT - 2017</span>
+        </div>
+    </footer>
+
+    <script src="cdn/popper.min.js"></script>
+    <script src="cdn/bootstrap.min.js"></script>
+  </body>
+</html>
