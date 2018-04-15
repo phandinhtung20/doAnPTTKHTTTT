@@ -29,23 +29,29 @@
     </div>
 
     <div class="container-fluid">
+      <div class="row topPage">
+        <div class="pageTitle">
+          <h3 class="display-5 dagTitle">
+            Da Nang Airport
+          </h3>
+        </div>
+        <div class="userCell">
+          <h4 style="width: 100%" class="text-center">User</h4>
+          <h5 style="width: 100%" class="text-center">Employee</h5>
+        </div>
+      </div>
+      <hr>
       <div class="row">
         <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
-          <img src="/AirPort.png" alt="" style="width: 100%;">
-          <div class="container">
-            <h3 class="display-5 daNangAirportGuide">
-              Da Nang Airport Guide
-            </h3>
-          </div>
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link disabled" href="#">Quản lý chuyến bay</a>
+              <a class="nav-link active" href="#">Quản lý chuyến bay</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">Tình hình chuyến bay<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="#">Quản lý thông tin các nhân</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Đăng nhập</a>
+              <a class="nav-link" href="#">Đăng xuất</a>
             </li>
           </ul>
         </nav>
@@ -92,37 +98,29 @@
                   <th>Nơi đến/đi</th>
                   <th>Thời gian</th>
                   <th>Trạng thái</th>
+                  <th>Xem</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
-                </tr>
+                <%for(var i=0; i<flights.length; i++){%>
+                  <tr>
+                    <td><%=flights[i].MaCB%></td>
+                    <td><%=flights[i].Hang%></td>
+                    <%if (flights[i].NoiDi._id==dn){%>
+                      <td>Đi</td>
+                    <%}else{%>
+                      <td>Đến</td>
+                    <%}%>
+                    <%if (flights[i].NoiDi._id==dn){%>
+                      <td><%=flights[i].NoiDen.TenSanBay%></td>
+                    <%}else{%>
+                      <td><%=flights[i].NoiDi.TenSanBay%></td>
+                    <%}%>
+                    <td><%=flights[i].ThoiGian.toJSON()%></td>
+                    <td><%=flights[i].TrangThai%></td>
+                    <td>Xem</td>
+                  </tr>
+                <%}%>
               </tbody>
             </table>
           </div>

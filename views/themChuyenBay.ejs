@@ -19,8 +19,8 @@
                   +":"+(date.getMinutes()>9?"":"0")+date.getMinutes();
         $('#inpThoiGian').val(dateVal);
 
-        $("#addFlight").click(()=>{
-          window.location.href = "/employee/flight/add";
+        $("#btnCancel").click(()=>{
+          window.location.href = "/employee/flight";
         })
       })
     </script>
@@ -33,44 +33,26 @@
     </div>
 
     <div class="container-fluid">
+      <div class="row topPage">
+        <div class="pageTitle">
+          <h3 class="display-5 dagTitle">
+            Da Nang Airport
+          </h3>
+        </div>
+        <div class="userCell">
+          <h4 style="width: 100%" class="text-center">User</h4>
+          <h5 style="width: 100%" class="text-center">Employee</h5>
+        </div>
+      </div>
+      <hr>
       <div class="row">
         <div class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
-          <img src="/AirPort.png" alt="" style="width: 100%;">
-          <div class="container">
-            <h3 class="display-5 daNangAirportGuide">
-              Da Nang Airport Guide
-            </h3>
-            <br>
-            <h4 class="display-5 text-center">
-              Phan Dinh Tung
-            </h4>
-          </div>
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link disabled" href="#">Quản lý chuyến bay</a>
+              <a class="nav-link active" href="#">Quản lý chuyến bay</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">Tình hình chuyến bay<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Thêm chuyến bay</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Quản lý nhân viên</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Danh sách nhân viên</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Thêm nhân viên</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Quản lý thông tin</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Xem thông tin cá nhân</a>
+              <a class="nav-link" href="#">Quản lý thông tin các nhân</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Đăng xuất</a>
@@ -88,7 +70,7 @@
                 <label>Số hiệu chuyến bay</label>
               </div>
               <div class="col-sm-6 col-md-6">
-                <input type="text" class="addWidth" name="inpSoHieu" placeholder="Số hiệu chuyến bay">
+                <input type="text" required class="addWidth" name="inpSoHieu" placeholder="Số hiệu chuyến bay">
               </div>
             </div>
             <!-- // Hãng hàng không -->
@@ -153,7 +135,7 @@
                 <label>Trạng thái</label>
               </div>
               <div class="col-sm-6 col-md-6">
-                <select class="addWidth" name="inpThaiThai" required>
+                <select class="addWidth" name="inpTrangThai" required>
                   <%for (var i=0; i<trangThais.length; i++){%>
                     <option value="<%=trangThais[i]._id%>"><%=trangThais[i].TenTT%></option>
                   <%}%>
@@ -163,7 +145,7 @@
             <div>
               <center>
                 <button type="submit" class="button btn-success">Lưu</button>
-                <button type="reset" class="button btn-success">Huỷ</button>
+                <button type="reset" id="btnCancel" class="button btn-success">Huỷ</button>
               <center/>
             </div>
           </form>

@@ -84,3 +84,20 @@ select.form-control{
   width: 100%;
   text-align:right;
 }
+
+.topPage {
+  position: relative;
+  height: 50px;
+}
+
+.pageTitle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.userCell {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}

@@ -7,7 +7,8 @@ const express= require('express'),
 
 const clientBasic= require('./handle/clientBasic.js'),
       employeeFlight= require('./handle/employeeFlight.js'),
-      getAddFlight= require('./handle/getAddFlight.js')
+      getAddFlight= require('./handle/getAddFlight.js'),
+      postAddFlight= require('./handle/postAddFlight.js')
 
 app.set('view engine', 'ejs');
 app.set('views','./views');
@@ -24,8 +25,7 @@ app.get('/employee/flight', (req,res)=>{
   employeeFlight(req,res);
 });
 app.post('/employee/flight', urlencodedParser, (req,res)=>{
-  console.log(req.body);
-  res.send("end");
+  postAddFlight(req,res);
 });
 
 app.get('/employee/flight/add', (req,res)=>{

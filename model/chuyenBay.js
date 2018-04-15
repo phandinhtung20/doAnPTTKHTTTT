@@ -21,7 +21,10 @@ var newsSchema = new Schema({
     ref: hangHangKhong
   },
   ThoiGian        : Date,
-  DaXoa           : Boolean,
+  DaXoa           : {
+    type: Boolean,
+    default: false
+  },
   TrangThai       : {
     type: Schema.Types.ObjectId,
     ref: tranngThai
