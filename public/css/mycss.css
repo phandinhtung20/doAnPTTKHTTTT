@@ -74,3 +74,13 @@ body{
 select.form-control{
     width: 100px;
 }
+
+.addWidth {
+  width: 180px
+}
+
+.row .col-sm-6 label {
+  display:block;
+  width: 100%;
+  text-align:right;
+}

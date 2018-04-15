@@ -8,6 +8,22 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="/cdn/bootstrap.min.css">
+    <script src="/cdn/jquery-3.2.1.slim.min.js"></script>
+    <script>
+      $(()=>{
+        let date= new Date();
+        let dateVal= date.getFullYear()+"-"
+                  +(date.getMonth()+1>9?"":"0")+(date.getMonth()+1)+"-"
+                  +(date.getDate()>9?"":"0")+date.getDate()
+                  +"T"+(date.getHours()>9?"":"0")+date.getHours()
+                  +":"+(date.getMinutes()>9?"":"0")+date.getMinutes();
+        $('#inpThoiGian').val(dateVal);
+
+        $("#addFlight").click(()=>{
+          window.location.href = "/employee/flight/add";
+        })
+      })
+    </script>
   </head>
   <body>
     <div id="header">
@@ -64,8 +80,93 @@
 
         <div role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
           <h1 class="text-center">Thêm chuyến bay </h1>
-          <br>
-
+          <hr>
+          <form action="/employee/flight" method="post" enctype="application/x-www-form-urlencoded">
+            <!-- // Số hiệu -->
+            <div class="row">
+              <div class="col-sm-6 col-md-6">
+                <label>Số hiệu chuyến bay</label>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                <input type="text" class="addWidth" name="inpSoHieu" placeholder="Số hiệu chuyến bay">
+              </div>
+            </div>
+            <!-- // Hãng hàng không -->
+            <div class="row">
+              <div class="col-sm-6 col-md-6">
+                <label> Hãng hàng không</label>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                <select class="addWidth" name="inpHangHangKhong" required>
+                  <%for (var i=0; i<hangHangKhongs.length; i++){%>
+                    <option value="<%=hangHangKhongs[i]._id%>"><%=hangHangKhongs[i].TenHHK%></option>
+                  <%}%>
+                </select> <br>
+              </div>
+            </div>
+            <!-- // Loại -->
+            <div class="row">
+              <div class="col-sm-6 col-md-6">
+                <label>Loại</label>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                <select class="addWidth" required name="denOrDi">
+                  <option selected value="1">Đến</option>
+                  <option value="0">Đi</option>
+                </select> <br>
+              </div>
+            </div>
+            <!-- // Địa điểm -->
+            <div class="row">
+              <div class="col-sm-6 col-md-6">
+                <label>Nơi đến/đi</label>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                <select class="addWidth" name="inpDiaDiem" required>
+                  <%for (var i=0; i<diaDiems.length; i++){%>
+                    <option value="<%=diaDiems[i]._id%>"><%=diaDiems[i].TenSanBay%></option>
+                  <%}%>
+                </select> <br>
+              </div>
+            </div>
+            <!-- // Thời gian -->
+            <div class="row">
+              <div class="col-sm-6 col-md-6">
+                <label>Thời gian</label>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                <input type="datetime-local" name="thoiGian" id="inpThoiGian" width="300px">
+              </div>
+            </div>
+            <!-- // Số hành khách -->
+            <div class="row">
+              <div class="col-sm-6 col-md-6">
+                <label>Số hành khách</label>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                <input type="number" name="inpSoHanhKhach" class="addWidth" value="0">
+              </div>
+            </div>
+            <!-- // Trạng thái -->
+            <div class="row">
+              <div class="col-sm-6 col-md-6">
+                <label>Trạng thái</label>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                <select class="addWidth" name="inpThaiThai" required>
+                  <%for (var i=0; i<trangThais.length; i++){%>
+                    <option value="<%=trangThais[i]._id%>"><%=trangThais[i].TenTT%></option>
+                  <%}%>
+                </select> <br>
+              </div>
+            </div>
+            <div>
+              <center>
+                <button type="submit" class="button btn-success">Lưu</button>
+                <button type="reset" class="button btn-success">Huỷ</button>
+              <center/>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -76,7 +177,6 @@
         </div>
     </footer>
 
-    <script src="/cdn/jquery-3.2.1.slim.min.js"></script>
     <script src="/cdn/popper.min.js"></script>
     <script src="/cdn/bootstrap.min.js"></script>
   </body>
