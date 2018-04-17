@@ -8,7 +8,8 @@ const express= require('express'),
 const clientBasic= require('./handle/clientBasic.js'),
       employeeFlight= require('./handle/employeeFlight.js'),
       getAddFlight= require('./handle/getAddFlight.js'),
-      postAddFlight= require('./handle/postAddFlight.js')
+      postAddFlight= require('./handle/postAddFlight.js'),
+      optionsFlight= require('./handle/optionsFlight.js')
 
 app.set('view engine', 'ejs');
 app.set('views','./views');
@@ -20,20 +21,32 @@ var db= mongoose.connection;
 app.get('/', (req,res)=>{
   clientBasic(req,res);
 });
+app.options('/', (req,res)=>{
+  optionsFlight(req,res, false);
+});
 
 app.get('/employee/flight', (req,res)=>{
   employeeFlight(req,res);
 });
+
 app.post('/employee/flight', urlencodedParser, (req,res)=>{
   postAddFlight(req,res);
+});
+
+app.options('/employee/flight', (req,res)=>{
+  optionsFlight(req,res, true);
 });
 
 app.get('/employee/flight/add', (req,res)=>{
   getAddFlight(req,res);
 });
 
+app.get('/employee/flight/', (req,res)=>{
+  employeeFlight(req,res);
+});
+
 // chuyenBay.
 
-http.listen(3000, function() {
+http.listen(process.env.PORT||3000, function() {
   console.log("Server started");
 });

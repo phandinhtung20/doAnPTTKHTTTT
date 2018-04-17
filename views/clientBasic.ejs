@@ -7,12 +7,32 @@
     <link rel="stylesheet" href="css/mycss.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="cdn/bootstrap.min.css">
-    <script src="cdn/jquery-3.2.1.slim.min.js"></script>
+    <script src="/cdn/jquery-3.3.1.min.js"></script>
     <script>
       $(()=>{
         let date= new Date();
         let dateVal= date.getFullYear()+"-"+(date.getMonth()+1>9?"":"0")+(date.getMonth()+1)+"-"+(date.getDate()>9?"":"0")+date.getDate();
         $('#filterTime').val(dateVal);
+        $.ajax({
+          url: '/',
+          type: 'options',
+          success: function(result){
+            $('#optionFlightFilter').html(result);
+          }
+        });
+
+        $("#btnFind").click(()=>{
+          let type= $('input[name=type]:checked').val();
+          let date= $('#filterTime').val();
+          let local= $('#local').find(":selected").val();
+          $.ajax({
+            url: '/?type='+type+'&date='+date+'&local='+local,
+            type: 'options',
+            success: function(result){
+              $('#optionFlightFilter').html(result);
+            }
+          });
+        });
       })
     </script>
 
@@ -52,8 +72,8 @@
           <div class="row">
             <div class="col-sm-2 col-md-2">
               <form>
-                <input type="radio" name="gender" value="out" checked>Bay đi<br>
-                <input type="radio" name="gender" value="in">Bay đến<br>
+                <input type="radio" name="type" value="out" checked>Bay đi<br>
+                <input type="radio" name="type" value="in">Bay đến<br>
               </form>
             </div>
 
@@ -63,63 +83,23 @@
             </div>
 
             <div class="col-sm-4 col-md-4">
-              <select class="">
-                <option disabled>Nơi đến</option>
+              <select class="addWidth" name="inpDiaDiem" id="local" required>
+                <%for (var i=0; i<locals.length; i++){%>
+                  <option value="<%=locals[i]._id%>"><%=locals[i].TenSanBay%></option>
+                <%}%>
               </select> <br>
 
               <input type="date" name="thoiGian" id="filterTime"/>
             </div>
 
             <div class="col-sm-4 col-md-4">
-              <button type="button" class="btn btn-success">Tìm</button>
+              <button type="button" class="btn btn-success" id="btnFind">Tìm</button>
             </div>
           </div>
 
 
           <hr>
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Số hiệu</th>
-                  <th>Hãng</th>
-                  <th>Loại</th>
-                  <th>Nơi đến/đi</th>
-                  <th>Thời gian</th>
-                  <th>Trạng thái</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="table-responsive" id="optionFlightFilter">
           </div>
         </div>
       </div>

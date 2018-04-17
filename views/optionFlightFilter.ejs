@@ -1,0 +1,40 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Số hiệu</th>
+      <th>Hãng</th>
+      <th>Loại</th>
+      <th>Nơi đến/đi</th>
+      <th>Thời gian</th>
+      <th>Trạng thái</th>
+      <% if (employeeRight){%>
+        <th>Xem</th>
+      <%}%>
+    </tr>
+  </thead>
+  <tbody>
+    <%for(var i=0; i<flights.length; i++){%>
+      <tr>
+        <td><%=flights[i].MaCB%></td>
+        <td><%=flights[i].Hang%></td>
+        <%if (flights[i].NoiDi._id==dn){%>
+          <td>Đi</td>
+        <%}else{%>
+          <td>Đến</td>
+        <%}%>
+        <%if (flights[i].NoiDi._id==dn){%>
+          <td><%=flights[i].NoiDen.TenSanBay%></td>
+        <%}else{%>
+          <td><%=flights[i].NoiDi.TenSanBay%></td>
+        <%}%>
+        <td><%=flights[i].ThoiGian.toJSON()%></td>
+        <td><%=flights[i].TrangThai%></td>
+        <% if (employeeRight){%>
+          <td>
+            <a href="/employee/flight/<%=flights[i]._id%>">Xem</a>
+          </td>
+        <%}%>
+      </tr>
+    <%}%>
+  </tbody>
+</table>
