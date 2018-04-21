@@ -6,7 +6,6 @@ const chuyenBay= require('../model/chuyenBay.js'),
 optionsFlight= (req,res, employeeRight)=> {
   let url_parts = url.parse(req.url, true);
   let query= url_parts.query;
-  console.log(query);
   queryFun(query, (err, flights)=>{
     if (err) {
       res.send(err)
