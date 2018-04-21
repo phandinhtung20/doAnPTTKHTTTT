@@ -35,6 +35,7 @@ function queryFun(query, callback) {
     }
   }
   if (query.date!=null) {
+    console.log("not empty date");
     let begin= new Date(query.date);
     begin.setHours(7);
     let end= new Date(begin);

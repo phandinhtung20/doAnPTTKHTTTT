@@ -30,8 +30,14 @@
           let type= $('input[name=type]:checked').val();
           let date= $('#filterTime').val();
           let local= $('#local').find(":selected").val();
+          let url="";
+          if (date!='') {
+            url= '/employee/flight?type='+type+'&date='+date+'&local='+local;
+          } else {
+            url= '/employee/flight?type='+type+'&local='+local;
+          }
           $.ajax({
-            url: '/employee/flight?type='+type+'&date='+date+'&local='+local,
+            url: url,
             type: 'options',
             success: function(result){
               $('#optionFlightFilter').html(result);
