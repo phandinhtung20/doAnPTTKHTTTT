@@ -101,3 +101,12 @@ select.form-control{
   top: 5px;
   right: 10px;
 }
+
+.boldAndPad {
+  font: italic bold 12px/30px Georgia, serif;
+  padding-left: 20%
+}
+
+.bold {
+  font: italic bold 12px/30px Georgia, serif;
+}

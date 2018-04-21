@@ -14,8 +14,7 @@ postAddFlight= (req,res)=> {
   });
   cb.save()
   .then((data)=>{
-    console.log("saved");
-    res.send("saved");
+    res.redirect('')
   })
   .catch(err=>{
     console.log(err);
