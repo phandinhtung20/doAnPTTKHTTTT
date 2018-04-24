@@ -106,6 +106,11 @@ function queryFun(query, callback) {
     },
     {
       $unwind: "$TrangThai"
+    },
+    {
+      $sort: {
+        'ThoiGian': 1
+      }
     }
   ]);
   chuyenBay.aggregate(queryStr, callback);

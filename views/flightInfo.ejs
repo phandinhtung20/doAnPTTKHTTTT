@@ -8,9 +8,41 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="/cdn/bootstrap.min.css">
-    <script src="/cdn/jquery-3.2.1.slim.min.js"></script>
+    <script src="/cdn/jquery-3.3.1.min.js"></script>
     <script>
       $(()=>{
+        $('#popup').hide();
+        $("#btnChange").click(()=>{
+          window.location.href = "/employee/flight/change/<%=flight._id%>";
+        })
+
+        $("#btnDelete").click(()=>{
+          $('#popup').show();
+        })
+
+        $("#btnDeleteCancel").click(()=>{
+          $('#popup').hide();
+        })
+
+        $("#btnDeleteConfirm").click(()=>{
+          $.ajax({
+            url: '/employee/flight/<%=flight._id%>',
+            type: 'delete',
+            success: function(result){
+              var temp= result;
+              if (temp.error== true) {
+                alert(JSON.stringify(temp.message));
+                $('#popup').hide();
+              } else {
+                $('#popup').hide();
+                window.location.href = "/employee/flight";
+              }
+            },
+            error: function(xhr) {
+              alert("An error occured: " + xhr.status + " " + xhr.statusText);
+            }
+          });
+        })
 
         $("#btnCancel").click(()=>{
           window.location.href = "/employee/flight";
@@ -25,7 +57,7 @@
       </nav>
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid relative">
       <div class="row topPage">
         <div class="pageTitle">
           <h3 class="display-5 dagTitle">
@@ -69,12 +101,22 @@
 
           <div>
             <center>
-              <button id="btnChange" class="button btn-success"><center>Thay đổi<br>thông tin</center></button>
-              <button id="btnDelete" class="button btn-success">Xóa</button>
-              <button id="btnCancel" class="button btn-success">Trở về</button>
+              <button id="btnChange" class="btn btn-success">Thay đổi thông tin</button>
+              <button id="btnDelete" class="btn btn-success">Xóa</button>
+              <button id="btnCancel" class="btn btn-success">Trở về</button>
             <center/>
           </div>
         </div>
+      </div>
+      <div id="popup">
+        <h4>Xác nhận xóa</h4>
+        <hr>
+        <center>
+          <span>Bạn có chắc chắn xóa thông tin chuyến bay này không?<br>Nhấn xóa để tiếp tục, nhấn hủy để hủy yêu cầu.</span>
+          <hr>
+          <button class="btn btn-success" id="btnDeleteConfirm">Xóa</button>
+          <button class="btn btn-success" id="btnDeleteCancel">Hủy</button>
+        </center>
       </div>
     </div>
 

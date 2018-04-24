@@ -110,3 +110,17 @@ select.form-control{
 .bold {
   font: italic bold 12px/30px Georgia, serif;
 }
+
+.relative {
+  position: relative;
+}
+
+#popup {
+  background-color: #ffffff;
+  border-style: solid;
+  position: absolute;
+  height: auto;
+  width: 30%;
+  left: 35%;
+  top: 35%;
+}

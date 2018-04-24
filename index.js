@@ -10,7 +10,9 @@ const clientBasic= require('./handle/clientBasic.js'),
       getAddFlight= require('./handle/getAddFlight.js'),
       postAddFlight= require('./handle/postAddFlight.js'),
       optionsFlight= require('./handle/optionsFlight.js'),
-      flightInfor= require('./handle/flightInfor.js')
+      flightInfor= require('./handle/flightInfor.js'),
+      changeFlightInfor= require('./handle/changeFlightInfor.js'),
+      deleteFlightInfor= require('./handle/deleteFlightInfor.js')
 
 app.set('view engine', 'ejs');
 app.set('views','./views');
@@ -43,11 +45,16 @@ app.get('/employee/flight/add', (req,res)=>{
 });
 
 app.get('/employee/flight/:id', (req,res)=>{
-  console.log(req.params.id);
   flightInfor(req,res);
 });
 
-// chuyenBay.
+app.get('/employee/flight/change/:id', (req,res)=>{
+  changeFlightInfor(req,res);
+});
+
+app.delete('/employee/flight/:id', (req,res)=>{
+  deleteFlightInfor(req,res);
+});
 
 http.listen(process.env.PORT||3000, function() {
   console.log("Server started");
