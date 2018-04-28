@@ -64,8 +64,6 @@ changeFlightInfor= (req,res)=> {
       });
     }
   ], function(err, hhk, dd, tt, flight) {
-    console.log(flight);
-    console.log(dd);
     res.render('changeFlightInfo',{hangHangKhongs: hhk, diaDiems: dd, trangThais: tt, flight: flight, dn: dn});
   });
 }

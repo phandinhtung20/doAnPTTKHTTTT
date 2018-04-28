@@ -1,80 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/css/mycss.css">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="/cdn/bootstrap.min.css">
-    <script src="/cdn/jquery-3.3.1.min.js"></script>
-    <script>
-      $(()=>{
-        $("#btnSave").click(()=>{
-          window.location.href = "/employee/flight/change/<%=flight._id%>";
-        })
-        $("#btnCancel").click(()=>{
-          window.location.href = "/employee/flight";
-        })
-      })
-    </script>
-  </head>
-  <body>
-    <div id="header">
-      <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top" role="navigation">
-          <a href="#" class="navbar-brand">Hệ thống quản lý cập nhật tình hình các chuyến bay đến và đi cho sân bay quốc tế Đà Nẵng</a>
-      </nav>
-    </div>
 
-    <div class="container-fluid relative">
-      <div class="row topPage">
-        <div class="pageTitle">
-          <h3 class="display-5 dagTitle">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="/css/mycss.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/cdn/bootstrap.min.css">
+  <script src="/cdn/jquery-3.3.1.min.js"></script>
+  <script>
+    $(() => {
+      $("#btnSave").click(()=>{
+        $.ajax({
+            url: '/employee/flight',
+            type: 'PUT',
+            data: {id: '123abds'},
+            dataType: 'json',
+            success: function(result) {
+              console.log(result);
+            },
+            error: function() {
+              console.log("Error");
+            }
+        });
+      })
+      $("#btnCancel").click(() => {
+        window.location.href = "/employee/flight";
+      })
+
+      let date = new Date("<%=flight.ThoiGian%>");
+      let dateVal = date.getFullYear() + "-" +
+        (date.getMonth() + 1 > 9 ? "" : "0") + (date.getMonth() + 1) + "-" +
+        (date.getDate() > 9 ? "" : "0") + date.getDate() +
+        "T" + (date.getHours() > 9 ? "" : "0") + date.getHours() +
+        ":" + (date.getMinutes() > 9 ? "" : "0") + date.getMinutes();
+      $('#inpThoiGian').val(dateVal);
+    })
+  </script>
+</head>
+
+<body>
+  <div id="header">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top" role="navigation">
+      <a href="#" class="navbar-brand">Hệ thống quản lý cập nhật tình hình các chuyến bay đến và đi cho sân bay quốc tế Đà Nẵng</a>
+    </nav>
+  </div>
+
+  <div class="container-fluid relative">
+    <div class="row topPage">
+      <div class="pageTitle">
+        <h3 class="display-5 dagTitle">
             Da Nang Airport
           </h3>
-        </div>
-        <div class="userCell">
-          <h4 style="width: 100%" class="text-center">User</h4>
-          <h5 style="width: 100%" class="text-center">Employee</h5>
-        </div>
       </div>
-      <hr>
-      <div class="row">
-        <div class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
-          <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Quản lý chuyến bay</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Quản lý thông tin các nhân</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Đăng xuất</a>
-            </li>
-          </ul>
-        </div>
+      <div class="userCell">
+        <h4 style="width: 100%" class="text-center">User</h4>
+        <h5 style="width: 100%" class="text-center">Employee</h5>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Quản lý chuyến bay</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Quản lý thông tin các nhân</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Đăng xuất</a>
+          </li>
+        </ul>
+      </div>
 
-        <div role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-          <h1 class="text-center">Sửa thông tin chuyến bay </h1>
-          <hr>
-          <center>
-            <span class="bold">Số hiệu chuyến bay: <%=flight.MaCB%></span> <br><br>
-          </center>
-
+      <div role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+        <h1 class="text-center">Sửa thông tin chuyến bay </h1>
+        <hr>
+        <center>
+          <span class="bold">Số hiệu chuyến bay: <%=flight.MaCB%></span> <br><br>
+        </center>
+        <!-- <form class="" action="/employee/flight" method="put" enctype="application/x-www-form-urlencoded"> -->
           <!-- // Hãng hàng không -->
+          <input name="id" value="<%=flight._id%>" hidden="">
+          <input name="soHieuCB" value="<%=flight.MaCB%>" hidden="">
           <div class="row">
             <div class="col-sm-6 col-md-6">
               <label> Hãng hàng không</label>
             </div>
             <div class="col-sm-6 col-md-6">
               <select class="addWidth" name="inpHangHangKhong" required>
-                <%for (var i=0; i<hangHangKhongs.length; i++){%>
-                  <option value="<%=hangHangKhongs[i]._id%>" <%if (hangHangKhongs[i].TenHHK==flight.Hang){%>selected<%}%>>
-                    <%=hangHangKhongs[i].TenHHK%>
-                  </option>
-                <%}%>
-              </select> <br>
+                  <%for (var i=0; i<hangHangKhongs.length; i++){%>
+                    <option value="<%=hangHangKhongs[i]._id%>" <%if (hangHangKhongs[i].TenHHK==flight.Hang){%>selected<%}%>>
+                      <%=hangHangKhongs[i].TenHHK%>
+                    </option>
+                    <%}%>
+                  </select> <br>
             </div>
           </div>
           <!-- // Loại -->
@@ -84,9 +107,9 @@
             </div>
             <div class="col-sm-6 col-md-6">
               <select class="addWidth" required name="denOrDi">
-                <option <%if(flight.NoiDen._id==dn){%>selected<%}%> value="1">Đến</option>
-                <option <%if(flight.NoiDi._id==dn){%>selected<%}%> value="0">Đi</option>
-              </select> <br>
+                    <option <%if(flight.NoiDen._id==dn){%>selected<%}%> value="1">Đến</option>
+                    <option <%if(flight.NoiDi._id==dn){%>selected<%}%> value="0">Đi</option>
+                  </select> <br>
             </div>
           </div>
           <!-- // Địa điểm -->
@@ -95,15 +118,16 @@
               <label>Nơi <% if(flight.NoiDi._id==dn) {%>đến<%}else{%>đi<%}%>: </label>
             </div>
             <div class="col-sm-6 col-md-6">
-              <select class="addWidth" name="inpDiaDiem" required>
-                <%for (var i=0; i<diaDiems.length; i++){%>
-                  <%if (diaDiems[i]._id!=dn){%>
-                    <option value="<%=diaDiems[i]._id%>">
-                      <%=diaDiems[i].TenSanBay%>
-                    </option>
-                  <%}%>
-                <%}%>
-              </select> <br>
+              <select class="addWidth" name="inpDiaDiem" required <%=flight.NoiDi._id%> <%=flight.NoiDen._id%>>
+                    <%for (var i=0; i<diaDiems.length; i++){%>
+                      <%if ((diaDiems[i]._id!=dn)){%>
+                        <option value="<%=diaDiems[i]._id%>"
+                          <% if ((flight.NoiDi.TenSanBay==diaDiems[i].TenSanBay)||(flight.NoiDen.TenSanBay==diaDiems[i].TenSanBay)) {%>selected<%}%>>
+                          <%=diaDiems[i].TenSanBay%>
+                        </option>
+                        <%}%>
+                        <%}%>
+                      </select> <br>
             </div>
           </div>
           <!-- // Thời gian -->
@@ -112,7 +136,7 @@
               <label>Thời gian</label>
             </div>
             <div class="col-sm-6 col-md-6">
-              <input type="datetime-local" name="thoiGian" id="inpThoiGian" width="300px" value="<%=flight.ThoiGian%>">
+              <input type="datetime-local" name="thoiGian" id="inpThoiGian" width="300px">
             </div>
           </div>
           <!-- // Số hành khách -->
@@ -131,36 +155,34 @@
             </div>
             <div class="col-sm-6 col-md-6">
               <select class="addWidth" name="inpTrangThai" required='true'>
-                <%for (var i=0; i<trangThais.length; i++){%>
-                  <option value="<%=trangThais[i]._id%>" <%if (trangThais[i].TenTT==flight.TrangThai){%>selected='true'<%}%> >
-                    <%=trangThais[i].TenTT%>
-                  </option>
-                <%}%>
+                  <%for (var i=0; i<trangThais.length; i++){%>
+                    <option value="<%=trangThais[i]._id%>" <%if (trangThais[i].TenTT==flight.TrangThai){%>selected='true'<%}%> >
+                      <%=trangThais[i].TenTT%>
+                    </option>
+                  <%}%>
               </select> <br>
             </div>
           </div>
 
-
-          <span class="boldAndPad">Nơi <% if(flight.NoiDi._id==dn) {%>đến<%}else{%>đi<%}%>: </span> <span>
-          <% if(flight.NoiDi._id==dn) {%><%=flight.NoiDen.TenSanBay%><%}else{%><%=flight.NoiDi.TenSanBay%><%}%></span><br>
-
           <div>
             <center>
-              <button id="btnSave" class="btn btn-success">Lưu</button>
-              <button id="btnCancel" class="btn btn-success">Hủy</button>
+              <button type="submit" id="btnSave" class="btn btn-success">Lưu</button>
+              <button type="reset" id="btnCancel" class="btn btn-success">Hủy</button>
             <center/>
           </div>
-        </div>
+        <!-- </form> -->
       </div>
     </div>
+  </div>
 
-    <footer class="footer fixed-bottom">
-        <div class="container-fluid">
-            <span class="text-muted">Nhóm 9 - TTCN - 2017</span>
-        </div>
-    </footer>
+  <footer class="footer fixed-bottom">
+    <div class="container-fluid">
+      <span class="text-muted">Nhóm 9 - TTCN - 2017</span>
+    </div>
+  </footer>
 
-    <script src="/cdn/popper.min.js"></script>
-    <script src="/cdn/bootstrap.min.js"></script>
-  </body>
+  <script src="/cdn/popper.min.js"></script>
+  <script src="/cdn/bootstrap.min.js"></script>
+</body>
+
 </html>

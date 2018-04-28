@@ -11,8 +11,9 @@ const clientBasic= require('./handle/clientBasic.js'),
       postAddFlight= require('./handle/postAddFlight.js'),
       optionsFlight= require('./handle/optionsFlight.js'),
       flightInfor= require('./handle/flightInfor.js'),
+      deleteFlightInfor= require('./handle/deleteFlightInfor.js'),
       changeFlightInfor= require('./handle/changeFlightInfor.js'),
-      deleteFlightInfor= require('./handle/deleteFlightInfor.js')
+      putFlight= require('./handle/putFlight.js')
 
 app.set('view engine', 'ejs');
 app.set('views','./views');
@@ -54,6 +55,11 @@ app.get('/employee/flight/change/:id', (req,res)=>{
 
 app.delete('/employee/flight/:id', (req,res)=>{
   deleteFlightInfor(req,res);
+});
+
+app.put('/employee/flight', urlencodedParser, (req,res)=>{
+  console.log(req.body.id);
+  res.send({result: "ok"})
 });
 
 http.listen(process.env.PORT||3000, function() {
