@@ -124,3 +124,8 @@ select.form-control{
   left: 35%;
   top: 35%;
 }
+
+#alert {
+  color: #ff0000;
+  font: italic bold 20px/30px Georgia, serif;
+}

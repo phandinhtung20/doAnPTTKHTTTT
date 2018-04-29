@@ -12,22 +12,51 @@
   <script src="/cdn/jquery-3.3.1.min.js"></script>
   <script>
     $(() => {
+      $('#alert').hide();
+
       $("#btnSave").click(()=>{
+        $("#btnSave").prop('disabled', true);
+        const loai= $('#denOrDi').find(":selected").val();
+        const noiDiDen= $('#inpDiaDiem').find(":selected").val();
+        const hanghk= $('#inpHangHangKhong').find(":selected").val();
+        const time= $('#inpThoiGian').val();
+        const soKH= $('#inpSoHanhKhach').val();
+        const trangThai= $('#inpTrangThai').find(":selected").val();
         $.ajax({
             url: '/employee/flight',
             type: 'PUT',
-            data: {id: '123abds'},
+            data: {
+              id: '<%= flight._id%>',
+              MaCB: '<%= flight.MaCB%>',
+              loai: loai,
+              noiDiDen: noiDiDen,
+              hanghk: hanghk,
+              time: time,
+              soKH: soKH,
+              trangThai: trangThai
+            },
             dataType: 'json',
             success: function(result) {
+              $("#btnSave").prop('disabled', false);
               console.log(result);
+              if (result.status) {
+                alert("Lưu thành công")
+                window.location.href = "/employee/flight/<%= flight._id%>";
+              } else {
+                alert(result.message);
+                $('#alert').val(result.message)
+                $('#alert').show();
+              }
             },
             error: function() {
-              console.log("Error");
+              $("#btnSave").prop('disabled', false);
+              $('#alert').val("Có lỗi xảy ra từ server")
+              $('#alert').show();
             }
         });
       })
       $("#btnCancel").click(() => {
-        window.location.href = "/employee/flight";
+        window.location.href = "/employee/flight/<%= flight._id%>";
       })
 
       let date = new Date("<%=flight.ThoiGian%>");
@@ -91,7 +120,7 @@
               <label> Hãng hàng không</label>
             </div>
             <div class="col-sm-6 col-md-6">
-              <select class="addWidth" name="inpHangHangKhong" required>
+              <select class="addWidth" name="inpHangHangKhong" id="inpHangHangKhong" required>
                   <%for (var i=0; i<hangHangKhongs.length; i++){%>
                     <option value="<%=hangHangKhongs[i]._id%>" <%if (hangHangKhongs[i].TenHHK==flight.Hang){%>selected<%}%>>
                       <%=hangHangKhongs[i].TenHHK%>
@@ -106,7 +135,7 @@
               <label>Loại</label>
             </div>
             <div class="col-sm-6 col-md-6">
-              <select class="addWidth" required name="denOrDi">
+              <select class="addWidth" required id="denOrDi">
                     <option <%if(flight.NoiDen._id==dn){%>selected<%}%> value="1">Đến</option>
                     <option <%if(flight.NoiDi._id==dn){%>selected<%}%> value="0">Đi</option>
                   </select> <br>
@@ -118,7 +147,7 @@
               <label>Nơi <% if(flight.NoiDi._id==dn) {%>đến<%}else{%>đi<%}%>: </label>
             </div>
             <div class="col-sm-6 col-md-6">
-              <select class="addWidth" name="inpDiaDiem" required <%=flight.NoiDi._id%> <%=flight.NoiDen._id%>>
+              <select class="addWidth" id="inpDiaDiem" required <%=flight.NoiDi._id%> <%=flight.NoiDen._id%>>
                     <%for (var i=0; i<diaDiems.length; i++){%>
                       <%if ((diaDiems[i]._id!=dn)){%>
                         <option value="<%=diaDiems[i]._id%>"
@@ -145,7 +174,7 @@
               <label>Số hành khách</label>
             </div>
             <div class="col-sm-6 col-md-6">
-              <input type="number" name="inpSoHanhKhach" class="addWidth" value="<%=flight.SoHanhKhach%>">
+              <input type="number" id="inpSoHanhKhach" class="addWidth" value="<%=flight.SoHanhKhach%>">
             </div>
           </div>
           <!-- // Trạng thái -->
@@ -154,7 +183,7 @@
               <label>Trạng thái</label>
             </div>
             <div class="col-sm-6 col-md-6">
-              <select class="addWidth" name="inpTrangThai" required='true'>
+              <select class="addWidth" id="inpTrangThai" required='true'>
                   <%for (var i=0; i<trangThais.length; i++){%>
                     <option value="<%=trangThais[i]._id%>" <%if (trangThais[i].TenTT==flight.TrangThai){%>selected='true'<%}%> >
                       <%=trangThais[i].TenTT%>
@@ -166,6 +195,7 @@
 
           <div>
             <center>
+              <span id="alert">Lỗi</span> <br>
               <button type="submit" id="btnSave" class="btn btn-success">Lưu</button>
               <button type="reset" id="btnCancel" class="btn btn-success">Hủy</button>
             <center/>

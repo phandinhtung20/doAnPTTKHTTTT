@@ -58,8 +58,7 @@ app.delete('/employee/flight/:id', (req,res)=>{
 });
 
 app.put('/employee/flight', urlencodedParser, (req,res)=>{
-  console.log(req.body.id);
-  res.send({result: "ok"})
+  putFlight(req,res);
 });
 
 http.listen(process.env.PORT||3000, function() {
