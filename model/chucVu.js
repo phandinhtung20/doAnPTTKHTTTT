@@ -5,11 +5,11 @@ var newsSchema = new Schema({
   // _id
   MaNV : {
     type: Schema.Types.ObjectId,
-    ref: nguoiDungs
+    ref: 'nguoiDungs'
   },
   MaCV : {
     type: Schema.Types.ObjectId,
-    ref: bangChucVus
+    ref: 'bangChucVus'
   }
 });
 

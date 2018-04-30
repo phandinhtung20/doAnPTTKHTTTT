@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/css/mycss.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/cdn/bootstrap.min.css">
+    <script src="/cdn/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+      $(()=>{
+        $('#alert').hide();
+        $('#btnSubmit').click(()=>{
+          $('#alert').hide();
+          if ($('inpChucVu').find(":selected").val()=='') {
+            $('#alert').text('Bạn hãy chọn chức vụ');
+            $('#alert').show();
+          }
+          if ($('#inpEmail').val()=='') {
+            $('#alert').text('Bạn hãy nhập email');
+            $('#alert').show();
+          }
+          if ($('#inpGioiTinh').find(":selected").val()=='') {
+            $('#alert').text('Bạn hãy chọn giới tính');
+            $('#alert').show();
+          }
+          if ($('#inpdiaChi').val()=='') {
+            $('#alert').text('Bạn hãy nhập địa chỉ');
+            $('#alert').show();
+          }
+          if ($('#inpNgaySinh').val()=='') {
+            $('#alert').text('Bạn hãy nhập ngày sinh');
+            $('#alert').show();
+          }
+          if ($('#inpHoTen').val()=='') {
+            $('#alert').text('Bạn hãy nhập họ tên');
+            $('#alert').show();
+          }
+        })
+        $('#inpSdt').focusout(()=>{
+          const num= $('#inpSdt').val();
+          if (num!='') {
+            if (!$.isNumeric( num )) {
+              $('#alert').text('Bạn hãy nhập số điện thoại đúng định dạng');
+              $('#alert').show();
+              $('#btnSubmit').prop( "disabled", true );
+            } else {
+              $('#btnSubmit').prop( "disabled", false );
+              $('#alert').hide();
+            }
+          } else {
+            $('#btnSubmit').prop( "disabled", false );
+            $('#alert').hide();
+          }
+        })
+      })
+    </script>
+  </head>
+  <body>
+    <div id="header">
+      <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top" role="navigation">
+          <a href="#" class="navbar-brand">Hệ thống quản lý cập nhật tình hình các chuyến bay đến và đi cho sân bay quốc tế Đà Nẵng</a>
+      </nav>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row topPage">
+        <div class="pageTitle">
+          <h3 class="display-5 dagTitle">
+            Da Nang Airport
+          </h3>
+        </div>
+        <div class="userCell">
+          <h4 style="width: 100%" class="text-center">User</h4>
+          <h5 style="width: 100%" class="text-center">Admin</h5>
+        </div>
+      </div>
+      <div class="row">
+        <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Tình hình chuyến bay</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Quản lý nhân viên</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">Quản lý thông tin cá nhân</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Báo cáo hoạt động</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Đăng xuất</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+          <h1 class="text-center">
+            THÊM NHÂN VIÊN
+          </h1>
+          <hr>
+          <form action="/admin/employee" method="post" enctype="application/x-www-form-urlencoded">
+            <!-- // Họ và tên -->
+            <div class="row">
+              <div class="col-sm-6 col-md-6">
+                <label>Họ và tên <span class="require">*</span></label>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                <input type="text" required class="addWidth" name="inpHoTen" id="inpHoTen" placeholder="Nhập họ tên">
+              </div>
+            </div>
+            <!-- // Ngày sinh -->
+            <div class="row">
+              <div class="col-sm-6 col-md-6">
+                <label>Ngày sinh <span class="require">*</span></label>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                <input class="addWidth" required type="date" name="inpNgaySinh" id="inpNgaySinh">
+              </div>
+            </div>
+            <!-- // Loại -->
+            <div class="row">
+              <div class="col-sm-6 col-md-6">
+                <label>Địa chỉ <span class="require">*</span></label>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                <input class="addWidth" type="text" id="inpdiaChi" name="inpdiaChi" required placeholder="Nhập địa chỉ">
+              </div>
+            </div>
+            <!-- // Giới tính -->
+            <div class="row">
+              <div class="col-sm-6 col-md-6">
+                <label>Giới tính <span class="require">*</span> </label>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                <select class="addWidth" name="inpGioiTinh" required>
+                  <option value="1" selected>Nam</option>
+                  <option value="0">Nữ</option>
+                </select>
+              </div>
+            </div>
+            <!-- // Email -->
+            <div class="row">
+              <div class="col-sm-6 col-md-6">
+                <label>Email <span class="require">*</span></label>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                <input type="email" name="inpEmail" id="inpEmail" class="addWidth" required>
+              </div>
+            </div>
+            <!-- //Chức vụ -->
+            <div class="row">
+              <div class="col-sm-6 col-md-6">
+                <label>Chức vụ <span class="require">*</span></label>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                <select class="addWidth" id="inpChucVu" name="inpChucVu">
+                  <%for (var i=0; i<chucVu.length; i++){%>
+                    <option value="<%=chucVu[i]._id%>" <%if (i==0) {%> <%='select'%><%}%>><%=chucVu[i].TenCV%></option>
+                  <%}%>
+                </select>
+              </div>
+            </div>
+            <!-- // Số điện thoại -->
+            <div class="row">
+              <div class="col-sm-6 col-md-6">
+                <label>Số điện thoại:</label>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                <input type="text" name="inpSdt" id="inpSdt">
+              </div>
+            </div>
+            <div>
+              <center>
+                <span id="alert">
+                  a
+                </span> <br>
+                <button type="submit" id="btnSubmit" class="btn btn-success">Lưu</button>
+                <button type="reset" id="btnCancel" class="btn btn-success">Huỷ</button>
+              <center/>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer fixed-bottom">
+        <div class="container-fluid">
+            <span class="text-muted">Nhóm 9 - TTCN - 2017</span>
+        </div>
+    </footer>
+
+    <script src="/cdn/popper.min.js"></script>
+    <script src="/cdn/bootstrap.min.js"></script>
+  </body>
+</html>

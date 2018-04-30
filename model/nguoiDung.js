@@ -3,15 +3,27 @@ var Schema = mongoose.Schema;
 
 var newsSchema = new Schema({
   // _id
-  MaNV      : String,
+  MaNV      : {
+    type: String,
+    unique: true
+  },
   HoTen     : String,
   GioiTinh  : String,
   DiaChi    : String,
   NgaySinh  : Date,
   Sdt       : String,
-  STK       : String,
-  CMND      : String,
-  Email     : String,
+  STK       : {
+    type: String,
+    default: ''
+  },
+  CMND      : {
+    type: String,
+    default: ''
+  },
+  Email     : {
+    type: String,
+    unique: true
+  },
   MatKhau   : String
 });
 

@@ -2,14 +2,6 @@ const chuyenBay = require('../model/chuyenBay.js'),
       dn = "5ad22ad480d7261dbc7a4b86"
 
 putFlight = (req, res) => {
-  // { id: '5ad358286913b028d46b6520',
-  //   MaCB: 'VN003',
-  //   loai: '1',
-  //   noiDiDen: '5ad22ad480d7261dbc7a4b87',
-  //   hanghk: '5ad22709ca5a3c10e40bb241',
-  //   time: '2018-04-15T20:47',
-  //   soKH: '60',
-  //   trangThai: '5ad227bedef01a1e744b1f06' }
 
   if (req.body.id == null ||
     req.body.MaCB == null ||

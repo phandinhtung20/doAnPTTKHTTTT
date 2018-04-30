@@ -52,7 +52,7 @@
               <a class="nav-link active" href="#">Quản lý chuyến bay</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Quản lý thông tin các nhân</a>
+              <a class="nav-link" href="#">Quản lý thông tin cá nhân</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Đăng xuất</a>
@@ -67,7 +67,7 @@
             <!-- // Số hiệu -->
             <div class="row">
               <div class="col-sm-6 col-md-6">
-                <label>Số hiệu chuyến bay</label>
+                <label>Số hiệu chuyến bay <span class="require">*</span></label>
               </div>
               <div class="col-sm-6 col-md-6">
                 <input type="text" required class="addWidth" name="inpSoHieu" placeholder="Số hiệu chuyến bay">
@@ -76,7 +76,7 @@
             <!-- // Hãng hàng không -->
             <div class="row">
               <div class="col-sm-6 col-md-6">
-                <label> Hãng hàng không</label>
+                <label> Hãng hàng không <span class="require">*</span></label>
               </div>
               <div class="col-sm-6 col-md-6">
                 <select class="addWidth" name="inpHangHangKhong" required>
@@ -89,7 +89,7 @@
             <!-- // Loại -->
             <div class="row">
               <div class="col-sm-6 col-md-6">
-                <label>Loại</label>
+                <label>Loại <span class="require">*</span></label>
               </div>
               <div class="col-sm-6 col-md-6">
                 <select class="addWidth" required name="denOrDi">
@@ -101,7 +101,7 @@
             <!-- // Địa điểm -->
             <div class="row">
               <div class="col-sm-6 col-md-6">
-                <label>Nơi đến/đi</label>
+                <label>Nơi đến/đi <span class="require">*</span></label>
               </div>
               <div class="col-sm-6 col-md-6">
                 <select class="addWidth" name="inpDiaDiem" required>
@@ -114,7 +114,7 @@
             <!-- // Thời gian -->
             <div class="row">
               <div class="col-sm-6 col-md-6">
-                <label>Thời gian</label>
+                <label>Thời gian <span class="require">*</span></label>
               </div>
               <div class="col-sm-6 col-md-6">
                 <input type="datetime-local" name="thoiGian" id="inpThoiGian" width="300px">
@@ -123,7 +123,7 @@
             <!-- // Số hành khách -->
             <div class="row">
               <div class="col-sm-6 col-md-6">
-                <label>Số hành khách</label>
+                <label>Số hành khách <span class="require">*</span></label>
               </div>
               <div class="col-sm-6 col-md-6">
                 <input type="number" name="inpSoHanhKhach" class="addWidth" value="0">
@@ -132,7 +132,7 @@
             <!-- // Trạng thái -->
             <div class="row">
               <div class="col-sm-6 col-md-6">
-                <label>Trạng thái</label>
+                <label>Trạng thái <span class="require">*</span></label>
               </div>
               <div class="col-sm-6 col-md-6">
                 <select class="addWidth" name="inpTrangThai" required>

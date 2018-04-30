@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/css/mycss.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/cdn/bootstrap.min.css">
+    <script src="/cdn/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+      $(()=>{
+        $.ajax({
+          url: '/admin/employee?sort=1',
+          type: 'options',
+          success: function(result){
+            $('#optionEmployeeFilter').html(result);
+          },
+          error: function() {
+            alert('Lỗi xảy ra, không tải được dữ liệu nhân viên');
+          }
+        });
+
+        $('#btnFind').click(()=>{
+          let inHoTen= $('#inHoTen').val();
+          let sort= $('#selectSort').find(":selected").val();
+          let url= '/admin/employee?sort='+sort;
+          if (inHoTen!='') {
+            url=url+'&name='+inHoTen;
+          }
+          $.ajax({
+            url: url,
+            type: 'options',
+            success: function(result){
+              $('#optionEmployeeFilter').html(result);
+            },
+            error: function() {
+              alert('Lỗi xảy ra, không tải được dữ liệu nhân viên');
+            }
+          });
+        })
+        $('#view').click(()=>{
+          alert("Chức năng chưa thực hiện")
+        })
+        $('#addEmployee').click(()=>{
+          window.location.href = "/admin/employee/add";
+        })
+      })
+    </script>
+  </head>
+  <body>
+    <div id="header">
+      <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top" role="navigation">
+          <a href="#" class="navbar-brand">Hệ thống quản lý cập nhật tình hình các chuyến bay đến và đi cho sân bay quốc tế Đà Nẵng</a>
+      </nav>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row topPage">
+        <div class="pageTitle">
+          <h3 class="display-5 dagTitle">
+            Da Nang Airport
+          </h3>
+        </div>
+        <div class="userCell">
+          <h4 style="width: 100%" class="text-center">User</h4>
+          <h5 style="width: 100%" class="text-center">Admin</h5>
+        </div>
+      </div>
+      <div class="row">
+        <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+          <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Tình hình chuyến bay</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Quản lý nhân viên</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">Quản lý thông tin cá nhân</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Báo cáo hoạt động</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Đăng xuất</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+          <div class="row">
+            <div class="col-sm-9 ml-sm-auto col-md-9">
+              <h1 class="text-center">
+                DANH SÁCH NHÂN VIÊN
+              </h1>
+            </div>
+            <div class="col-sm-3 ml-sm-auto col-md-3">
+              <button type="button" class="btn btn-success" id="addEmployee">Thêm<br>nhân viên</button>
+            </div>
+          </div>
+
+          <hr>
+          <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <span>Họ và tên: </span> <br>
+                <input type="text" id="inHoTen" placeholder="Nhập họ tên cần tìm"><br>
+            </div>
+
+            <div class="col-sm-3 col-md-3">
+              <span>Sắp xếp: </span>
+              <select class="form-control" id="selectSort">
+                <option select value="1">Tên tăng dần</option>
+                <option value="0">Tên giảm dần</option>
+              </select>
+            </div>
+
+            <div class="col-sm-2 col-md-2">
+              <button type="button" class="btn btn-success" id="btnFind">Tìm</button>
+            </div>
+          </div>
+          <div class="table-responsive" id="optionEmployeeFilter">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Mã nhân viên</th>
+                  <th>Họ và tên</th>
+                  <th>Địa chỉ</th>
+                  <th>Email</th>
+                  <th>Xem</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer fixed-bottom">
+        <div class="container-fluid">
+            <span class="text-muted">Nhóm 9 - TTCN - 2017</span>
+        </div>
+    </footer>
+
+    <script src="/cdn/popper.min.js"></script>
+    <script src="/cdn/bootstrap.min.js"></script>
+  </body>
+</html>

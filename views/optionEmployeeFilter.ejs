@@ -1,0 +1,29 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Mã nhân viên</th>
+      <th>Họ và tên</th>
+      <th>Địa chỉ</th>
+      <th>Email</th>
+      <th>Xem</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%for(var i=0; i<employees.length; i++){%>
+      <tr>
+        <td><%=employees[i].MaNV%></td>
+        <td><%=employees[i].HoTen%></td>
+        <td><%=employees[i].DiaChi%></td>
+        <td><%=employees[i].Email%></td>
+        <td>
+          <button id="view">Xem</button>
+        </td>
+      </tr>
+    <%}%>
+  </tbody>
+</table>
+<script type="text/javascript">
+  document.getElementById('view').onClick= function() {
+    alert('dcf fb')
+  }
+</script>

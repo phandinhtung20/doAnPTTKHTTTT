@@ -129,3 +129,11 @@ select.form-control{
   color: #ff0000;
   font: italic bold 20px/30px Georgia, serif;
 }
+
+#selectSort {
+  width: auto;
+}
+
+.require {
+  color: #ff0000;
+}

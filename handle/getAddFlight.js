@@ -46,7 +46,7 @@ getAddFlight= (req,res)=> {
       })
     }
   ], function(err, hhk, dd, tt) {
-    res.render('themChuyenBay',{hangHangKhongs: hhk, diaDiems: dd, trangThais: tt});
+    res.render('addFlight',{hangHangKhongs: hhk, diaDiems: dd, trangThais: tt});
   });
 }
 module.exports= getAddFlight;
