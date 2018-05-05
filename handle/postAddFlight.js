@@ -14,7 +14,7 @@ postAddFlight= (req,res)=> {
   });
   cb.save()
   .then((data)=>{
-    res.redirect('')
+    res.redirect('/employee/flight')
   })
   .catch(err=>{
     console.log(err);
