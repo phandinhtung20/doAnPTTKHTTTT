@@ -1,7 +1,8 @@
 const hangHangKhong= require('../model/hangHangKhong.js'),
       diaDiem= require('../model/diaDiem.js'),
       trangThai= require('../model/trangThai.js'),
-      async = require('async')
+      async = require('async'),
+      dn= '5ad22ad480d7261dbc7a4b86'
 
 getAddFlight= (req,res)=> {
   async.waterfall([
@@ -46,7 +47,7 @@ getAddFlight= (req,res)=> {
       })
     }
   ], function(err, hhk, dd, tt) {
-    res.render('addFlight',{hangHangKhongs: hhk, diaDiems: dd, trangThais: tt});
+    res.render('addFlight',{hangHangKhongs: hhk, diaDiems: dd, trangThais: tt, dn: dn});
   });
 }
 module.exports= getAddFlight;

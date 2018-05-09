@@ -22,6 +22,14 @@
         $("#btnCancel").click(()=>{
           window.location.href = "/employee/flight";
         })
+
+        $('#btnSubmit').click(()=>{
+          $('#alert').hide();
+          if ($('#btnSH').val()=='') {
+            $('#alert').text('Bạn hãy nhập số hiệu');
+            $('#alert').show();
+          }
+        })
       })
     </script>
   </head>
@@ -70,7 +78,7 @@
                 <label>Số hiệu chuyến bay <span class="require">*</span></label>
               </div>
               <div class="col-sm-6 col-md-6">
-                <input type="text" required class="addWidth" name="inpSoHieu" placeholder="Số hiệu chuyến bay">
+                <input id="btnSH" type="text" required class="addWidth" name="inpSoHieu" placeholder="Số hiệu chuyến bay">
               </div>
             </div>
             <!-- // Hãng hàng không -->
@@ -106,7 +114,9 @@
               <div class="col-sm-6 col-md-6">
                 <select class="addWidth" name="inpDiaDiem" required>
                   <%for (var i=0; i<diaDiems.length; i++){%>
-                    <option value="<%=diaDiems[i]._id%>"><%=diaDiems[i].TenSanBay%></option>
+                    <% if(dn!=diaDiems[i]._id){%>
+                      <option value="<%=diaDiems[i]._id%>"><%=diaDiems[i].TenSanBay%></option>
+                    <%}%>
                   <%}%>
                 </select> <br>
               </div>
@@ -144,8 +154,11 @@
             </div>
             <div>
               <center>
-                <button type="submit" class="button btn-success">Lưu</button>
-                <button type="reset" id="btnCancel" class="button btn-success">Huỷ</button>
+                <span id="alert">
+
+                </span> <br>
+                <button type="submit" id="btnSubmit" class="btn btn-success">Lưu</button>
+                <button type="reset" id="btnCancel" class="btn btn-success">Huỷ</button>
               <center/>
             </div>
           </form>

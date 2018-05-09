@@ -100,7 +100,9 @@
             <div class="col-sm-4 col-md-4">
               <select class="addWidth" name="inpDiaDiem" id="local" required>
                 <%for (var i=0; i<locals.length; i++){%>
-                  <option value="<%=locals[i]._id%>"><%=locals[i].TenSanBay%></option>
+                  <% if(dn!=locals[i]._id){%>
+                    <option value="<%=locals[i]._id%>"><%=locals[i].TenSanBay%></option>
+                  <%}%>
                 <%}%>
               </select> <br>
 

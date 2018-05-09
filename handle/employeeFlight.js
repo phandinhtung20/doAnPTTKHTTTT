@@ -6,7 +6,7 @@ const chuyenBay= require('../model/chuyenBay.js'),
 employeeFlight= (req,res)=> {
   diaDiem.find()
   .then(locals=>{
-    res.render('employeeFlight',{locals: locals});
+    res.render('employeeFlight',{locals: locals, dn: dn});
   })
   .catch(err=>{
     res.send(err);
